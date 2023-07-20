@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\Auth\TwoFaController;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Livewire\Admin\AuditTrails;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Roles\Edit;
+use App\Http\Livewire\Admin\AuditTrails;
 use App\Http\Livewire\Admin\Roles\Roles;
-use App\Http\Livewire\Admin\SentEmails\SentEmails;
-use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
-use App\Http\Livewire\Admin\Settings\Settings;
+use App\Http\Livewire\Admin\Users\Users;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Livewire\Admin\Users\EditUser;
 use App\Http\Livewire\Admin\Users\ShowUser;
-use App\Http\Livewire\Admin\Users\Users;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\TwoFaController;
+use App\Http\Livewire\Admin\Settings\Settings;
+use App\Http\Livewire\Admin\SentEmails\SentEmails;
+use App\Http\Controllers\Articles\ArticleController;
+use App\Http\Controllers\Pages\PagesController;
+use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', WelcomeController::class);
+
+//Home Page
+Route::get('/', [PagesController::class,'index'])->name('pages.home');
+//Pages
+Route::prefix('pages')->group(function(){
+    Route::get('contact',[PagesController::class,'contact'])->name('pages.contact');
+});
+
+
 
 Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCheckMiddleware'])->group(function () {
     Route::get('/', Dashboard::class)->name('dashboard');// 'verified',->to be added later in middleware above
@@ -48,5 +58,18 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('{user}', ShowUser::class)->name('admin.users.show');
     });
 });
+
+Route::prefix('articles')->group(function(){
+    Route::get('/',[ArticleController::class,'index'])->name('articles.index');
+});
+ 
+
+
+
+
+
+
+
+
 
 require __DIR__.'/auth.php';
