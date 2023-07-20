@@ -1,4 +1,4 @@
 @extends('frontend.base')
 @section('content')
-    home
+   @include('common.articles')
 @endsection
