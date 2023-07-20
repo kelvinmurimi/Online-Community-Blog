@@ -9,12 +9,14 @@ use App\Http\Livewire\Admin\Users\Users;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Livewire\Admin\Users\EditUser;
 use App\Http\Livewire\Admin\Users\ShowUser;
+use App\Http\Controllers\Tags\TagsController;
 use App\Http\Controllers\Auth\TwoFaController;
 use App\Http\Livewire\Admin\Settings\Settings;
+use App\Http\Controllers\Pages\PagesController;
 use App\Http\Livewire\Admin\SentEmails\SentEmails;
 use App\Http\Controllers\Articles\ArticleController;
-use App\Http\Controllers\Pages\PagesController;
 use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
+use App\Http\Controllers\Categories\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,9 +60,18 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('{user}', ShowUser::class)->name('admin.users.show');
     });
 });
-
+//articles
 Route::prefix('articles')->group(function(){
     Route::get('/',[ArticleController::class,'index'])->name('articles.index');
+});
+
+//categories
+Route::prefix('categories')->group(function(){
+    Route::get('/',[CategoriesController::class,'index'])->name('categories.index');
+});
+//tags
+Route::prefix('tags')->group(function(){
+    Route::get('/',[TagsController::class,'index'])->name('tags.index');
 });
  
 
