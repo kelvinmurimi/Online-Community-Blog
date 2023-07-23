@@ -63,6 +63,8 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
 //articles
 Route::prefix('articles')->group(function(){
     Route::get('/',[ArticleController::class,'index'])->name('articles.index');
+    //Show Article
+    Route::get('/{slug}',[ArticleController::class,'show'])->name('articles.show');
 });
 
 //categories

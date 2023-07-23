@@ -4,13 +4,29 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Articles;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Http\Controllers\Controller;
+
 
 class ArticleController extends Controller
 {
     //
     public function index(){
-        return view('articles.index');
+        $articles=Article::latest()->paginate(6);
+        return view('articles.index',[
+            'articles'=>$articles,
+        ]);
     }
+  
+    //Show single Article
+    public function show(Article $slug){
+      //  $article =Article::findOrFail($slug);
+        return view('articles.show',[
+            'article'=>$slug,
+        ]);
+    }
+
+
+
 }
