@@ -7,6 +7,9 @@
  <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
 
+
+    @stack('scripts')
+
     <link rel="stylesheet" href="{{asset('wordify/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('wordify/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('wordify/css/owl.carousel.min.css')}}">
@@ -48,7 +51,8 @@
           <div class="row pt-5">
             <div class="col-12 text-center">
               <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
-              <h1 class="site-logo"><a href="index.html">{{ config('app.name', 'Laravel') }}</a></h1>
+              <h5 class="site-logo"><a href="index.html">{{ config('app.name', 'Laravel') }}</a></h5>
+              <livewire:articlecounter/>
             </div>
           </div>
         </div>
@@ -60,7 +64,9 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="index.html">Home</a>
+                  <a class="nav-link @if (Route::currentRouteName()=='pages.home')
+                      active
+                  @endif " href="{{ route('pages.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Business</a>
@@ -89,10 +95,18 @@
 
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link @if (Route::currentRouteName()=='articles.index')
+                    active
+                @endif" href="{{ route('articles.index') }}">Articles</a>
+                  </li>
+
+                <li class="nav-item">
                   <a class="nav-link" href="about.html">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
+                  <a class="nav-link @if (Route::currentRouteName()=='pages.contact')
+                  active
+              @endif" href="{{ route('pages.contact') }}">Contact</a>
                 </li>
               </ul>
 

@@ -14,9 +14,11 @@ use App\Http\Controllers\Auth\TwoFaController;
 use App\Http\Livewire\Admin\Settings\Settings;
 use App\Http\Controllers\Pages\PagesController;
 use App\Http\Livewire\Admin\SentEmails\SentEmails;
+
 use App\Http\Controllers\Articles\ArticleController;
 use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\dashboard\AdminArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,12 +55,19 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('roles', Roles::class)->name('admin.settings.roles.index');
         Route::get('roles/{role}/edit', Edit::class)->name('admin.settings.roles.edit');
     });
-
+           //users / Authers
     Route::prefix('users')->group(function () {
         Route::get('/', Users::class)->name('admin.users.index');
         Route::get('{user}/edit', EditUser::class)->name('admin.users.edit');
         Route::get('{user}', ShowUser::class)->name('admin.users.show');
     });
+    //articles dashboard
+    Route::prefix('dashboard')->group(function(){
+        Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
+        Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
+        
+    });
+
 });
 //articles
 Route::prefix('articles')->group(function(){

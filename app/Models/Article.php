@@ -28,4 +28,17 @@ class Article extends Model
     public function slug(){
         return $this->slug;
     }
+    public function min_to_read(){
+        return $this->min_to_read;
+    }
+    public function excerpt(){
+        return $this->excerpt;
+    }
+    public function body(){
+        return $this->body;
+    }
+    public function created_at(){
+        return $this->created_at;
+    }
+
 }
