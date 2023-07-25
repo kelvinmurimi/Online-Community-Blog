@@ -65,7 +65,8 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
     Route::prefix('dashboard')->group(function(){
         Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
         Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
-        
+        Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
+
     });
 
 });
@@ -84,7 +85,7 @@ Route::prefix('categories')->group(function(){
 Route::prefix('tags')->group(function(){
     Route::get('/',[TagsController::class,'index'])->name('tags.index');
 });
- 
+
 
 
 

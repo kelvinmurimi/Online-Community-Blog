@@ -12,7 +12,7 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'slug', 'min_to_read', 'excerpt', 'image', 'is_published', 'body'
+        'title', 'slug', 'min_to_read', 'excerpt', 'image', 'is_published', 'body','views'
     ];
 
     //make slug default instead of id
