@@ -3,14 +3,15 @@
 declare(strict_types=1);
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+//use App\Models\Traits\HasUuid;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
     use HasFactory;
-
+   // use HasUuid;
     protected $fillable = [
         'title', 'slug', 'min_to_read', 'excerpt', 'image', 'is_published', 'body','views'
     ];
@@ -40,5 +41,14 @@ class Article extends Model
     public function created_at(){
         return $this->created_at;
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault([
+        'username'=>'Guest_User',
+        'image'=>'images/person_1.jpg'
+        ]);
+    }
+
+  //  public $preventLazyLoading=true;
 
 }

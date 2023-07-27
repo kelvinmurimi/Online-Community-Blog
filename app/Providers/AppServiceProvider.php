@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised();
         });
 
-        Model::shouldBeStrict(!app()->isProduction());
+       // Model::shouldBeStrict(!app()->isProduction());
 
         //if key exists
         if (Cache::has('setting_keys')) {

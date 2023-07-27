@@ -17,6 +17,7 @@ class ArticleDatabaseSeeder extends Seeder
         Article::firstOrCreate([
             'title' => 'How to Find the Video Games of Your Youth 0',
             'slug' => 'How-to-Find-the-Video-Games-of-Your-Youth-0',
+
             'excerpt' =>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.',
             'min_to_read' => rand(1, 10),
             'image' =>'seeder/img_1.jpg',

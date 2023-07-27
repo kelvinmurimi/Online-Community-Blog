@@ -10,24 +10,24 @@
               <div class="text half-to-full">
                 <span class="category mb-5">Food</span>
                 <div class="post-meta">
-                  
+
                   <span class="author mr-2"><img src="{{ asset('wordify/images/person_1.jpg') }}" alt="Colorlib"> Colorlib</span>&bullet;
                   <span class="mr-2">{{ $slider->created_at()->diffForHumans() }} </span> &bullet;
                   <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                  
+
                 </div>
-                <h3>{{ $slider->title() }}</h3>
-                <p>{{ $slider->excerpt() }}</p>
+                <h5>{{ $slider->title() }}</h5>
+                <p>{{ Str::limit($slider->excerpt(),100) }}</p>
               </div>
             </a>
           </div>
            @endforeach
-           
+
           </div>
-          
+
         </div>
       </div>
-      
+
     </div>
 
 

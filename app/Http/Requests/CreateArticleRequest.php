@@ -19,8 +19,8 @@ class CreateArticleRequest extends FormRequest
             //
             'title'=>['required','unique:articles,id'],
              'excerpt' =>['required'],
-            'image'=>['required','mimes:png,jpg'],
-            'is_published'=>['required'],
+            'cover_image'=>['required'],
+           // 'is_published'=>['required'],
             'content'=>['required']
         ];
     }

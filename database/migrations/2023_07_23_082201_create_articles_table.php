@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title')->unique();
             $table->string('slug');
             $table->text('excerpt')->nullable();

@@ -31,23 +31,25 @@ class AdminArticlesController extends Controller
     {
         $request->validated();
 
-        if($request->hasFile('cover_image')) {
-         $cover_image=time().'.'.$request->cover_image->extension();
-         $request->cover_image->move(public_path('images/articles'),$cover_image);
-        }
+       // if($request->hasFile('cover_image')) {
+        // $cover_image=time().'.'.$request->cover_image->extension();
+        // $request->cover_image->move(public_path('images/articles'),$cover_image);
+       // }
+       $cover_image='images/articles'.'/'.time().'.'.$request->cover_image->extension();
+       $request->cover_image->move(public_path('images/articles'),$cover_image);
 
         $slug=Str::slug($request->title,'-');
-        Article::create([
+        $request->user()->article()->create([
             'title'=>$request->title,
             'slug'=>$slug,
             'min_to_read'=>rand(5,15),
             'image'=>$cover_image,
             'is_published'=>1,
             'excerpt'=>$request->excerpt,
-            'body'=>$request->body,
+            'body'=>$request->content,
             'views'=>rand(5,200),
         ]);
-        return redirect(route('admin.articles.index'))->with('message', 'Listing created successfully!');
+        return redirect(route('admin.articles.index'))->with('success', 'Article  created successfully!');
     }
 
     public function show($id)

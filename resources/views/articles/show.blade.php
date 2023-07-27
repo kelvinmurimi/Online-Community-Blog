@@ -9,7 +9,7 @@
         <div class="col-md-12 col-lg-8 main-content">
           <img src="{{ asset($article->image()) }}" alt="Image" class="img-fluid mb-5">
            <div class="post-meta">
-                      <span class="author mr-2"><img src="{{ asset('wordify/images/person_1.jpg') }}" alt="Colorlib" class="mr-2"> Colorlib</span>&bullet;
+                      <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="Colorlib" class="mr-2">{{$article->user->username }}</span>&bullet;
                       <span class="mr-2">{{ $article->created_at()->diffForHumans() }} </span> &bullet;
                       <span class="ml-2"><span class="fa fa-book"></span><strong class="p-1" style="color: blue; ">{{ $article->min_to_read() }}</strong> Mins Read </span>
                     </div>
@@ -66,7 +66,7 @@
         <div class="col-md-12 col-lg-4 sidebar">
 
           <!-- END sidebar-box -->
-          @include('shared.bestauther')
+          @include('includes.article_user_profile')
 
           @include('shared.popularposts')
 

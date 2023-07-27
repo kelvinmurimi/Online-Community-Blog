@@ -66,6 +66,9 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
         Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
         Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
+        Route::post('/articles/{$slug}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
+        Route::patch('/articles/update',[AdminArticlesController::class,'update'])->name('admin.articles.update');
+        Route::delete('/articles/destroy/{$slug}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
 
     });
 

@@ -6,7 +6,7 @@
         <h1>{{ __('Your Articles') }}</h1>
 
         <div>
-           
+
         </div>
 
     </div>
@@ -47,23 +47,24 @@
                 wire:ignore.self>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 <x-form.input type="email" id="email" name="email" :label="__('Title')"  />
-               
+
             </div>
         </div>
 
     </div>
-    
+
     <div class="flex space-x-2 justify-end p-3">
         <a href="{{ route('admin.articles.create') }}"class="btn btn-primary p-3" >{{ __('Add Article') }}</a>
-     
+
      </div>
+      @include('errors.messages')
     <div class="overflow-x-scroll shadow-md">
         <table>
         <thead>
         <tr>
             <th><a href="#" wire:click.prevent="sortBy('first_name')">{{ __('title') }}</a></th>
             <th><a href="#" wire:click.prevent="sortBy('email')">{{ __('Action') }}</a></th>
-           
+
         </tr>
         </thead>
         <tbody>
@@ -71,11 +72,11 @@
             <tr>
                 <td class="flex">
                     <div>
-                      
-                            <img src="{{ asset($article->image()) }}" alt="{{ $article->title() }}" width="60" class="h-8 w-8 rounded-full">
-                        
+
+                            <img src="{{ asset($article->image()) }}" alt="{{ $article->title() }}" width="80" class="h-12 w-12 rounded-full">
+
                     </div>
-                    <div class="pl-1 pt-1">{{ $article->title() }}</div>
+                    <div class="pl-1 pt-1">{{Str::limit($article->title(),100) }}</div>
                 </td>
                <td>
                     <div class="flex space-x-2">

@@ -20,6 +20,16 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="{{asset('wordify/css/style.css')}}">
+    <style>
+        h5{
+            color: #fff !important;
+        }
+        h1{
+            color: rgb(87, 83, 83);
+            font-size: 15px;
+            font-weight:bold;
+        }
+    </style>
   </head>
   <body>
 

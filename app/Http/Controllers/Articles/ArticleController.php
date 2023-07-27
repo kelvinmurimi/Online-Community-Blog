@@ -13,12 +13,12 @@ class ArticleController extends Controller
 {
     //
     public function index(){
-        $articles=Article::latest()->paginate(6);
+        $articles=Article::latest()->with(['user'])->paginate(20);
         return view('articles.index',[
             'articles'=>$articles,
         ]);
     }
-  
+
     //Show single Article
     public function show(Article $slug){
       //  $article =Article::findOrFail($slug);
