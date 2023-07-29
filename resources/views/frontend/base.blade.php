@@ -118,10 +118,20 @@
                                 <a class="nav-link @if (Route::currentRouteName() == 'articles.index') active @endif"
                                     href="{{ route('articles.index') }}">Articles</a>
                             </li>
+                              @auth
+                                    <li class="nav-item">
+                                         <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                                      </li>
+                              @endauth
+                              @guest
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{route('login')}}">Login</a>
+                             </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{route('register')}}">Register</a>
+                             </li>
+                              @endguest
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link @if (Route::currentRouteName() == 'pages.contact') active @endif"
                                     href="{{ route('pages.contact') }}">Contact</a>

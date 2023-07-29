@@ -11,9 +11,9 @@
                 <span class="category mb-5">Food</span>
                 <div class="post-meta">
 
-                  <span class="author mr-2"><img src="{{ asset('wordify/images/person_1.jpg') }}" alt="Colorlib"> Colorlib</span>&bullet;
+                  <span class="author mr-2"><img src="{{ storage_url($slider->user->image) }}" alt="Colorlib"> Colorlib</span>&bullet;
                   <span class="mr-2">{{ $slider->created_at()->diffForHumans() }} </span> &bullet;
-                  <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                  <span class="ml-2"><span class="fa fa-book"></span> {{ $slider->min_to_read }}Mins To Read</span>
 
                 </div>
                 <h5>{{ $slider->title() }}</h5>
