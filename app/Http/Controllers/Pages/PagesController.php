@@ -14,8 +14,8 @@ class PagesController extends Controller
     //
     //Home Page
     public function index(){
-        $home_slider=Article::latest()->paginate(3);
-        $articles=Article::latest()->paginate(6);
+        $articles=Article::with(['user','likes'])->latest()->paginate(6);
+        $home_slider=Article::with(['user','likes'])->latest()->paginate(3);
         return view('pages.home',[
             'articles'=>$articles,
             'home_slider'=>$home_slider

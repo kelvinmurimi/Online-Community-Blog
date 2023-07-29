@@ -80,8 +80,8 @@
                 </td>
                <td>
                     <div class="flex space-x-2">
-                      <a href=""class="btn btn-primary" >{{ __('Edit') }}</a>
-                    <a href="" class="btn btn-danger">{{ __('Delete') }}</a>
+                      <a href="{{ route('admin.articles.edit',$article) }}"class="btn btn-primary" >{{ __('Edit') }}</a>
+                    <a href="" class="btn btn-danger bg-red-800 :hover bg-red-600 text-gray-50">{{ __('Delete') }}</a>
                    </div>
                 </td>
             </tr>

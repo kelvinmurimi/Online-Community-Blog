@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Roles\Edit;
@@ -13,12 +14,13 @@ use App\Http\Controllers\Tags\TagsController;
 use App\Http\Controllers\Auth\TwoFaController;
 use App\Http\Livewire\Admin\Settings\Settings;
 use App\Http\Controllers\Pages\PagesController;
-use App\Http\Livewire\Admin\SentEmails\SentEmails;
 
+use App\Http\Livewire\Admin\SentEmails\SentEmails;
 use App\Http\Controllers\Articles\ArticleController;
 use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\dashboard\AdminArticlesController;
+use App\Http\Livewire\Articlelikes;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +68,8 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
         Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
         Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
-        Route::post('/articles/{$slug}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
-        Route::patch('/articles/update',[AdminArticlesController::class,'update'])->name('admin.articles.update');
+        Route::get('/articles/{article}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
+        Route::patch('/articles/update/{article}',[AdminArticlesController::class,'update'])->name('admin.articles.update');
         Route::delete('/articles/destroy/{$slug}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
 
     });
@@ -88,6 +90,11 @@ Route::prefix('categories')->group(function(){
 Route::prefix('tags')->group(function(){
     Route::get('/',[TagsController::class,'index'])->name('tags.index');
 });
+
+
+//Routes to like Article
+Route::post('/articles/{article}/likes', [Articlelikes::class, 'store'])->name('article.likes');
+Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->name('article.destroy');
 
 
 

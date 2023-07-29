@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateArticleRequest extends FormRequest
+class UpdateArticleRequest extends FormRequest
 {
     public function authorize()
     {
@@ -18,10 +18,10 @@ class CreateArticleRequest extends FormRequest
         return [
             //
             'title'=>['required','max:255'],
-             'excerpt' =>['required'],
-            'cover_image'=>['required','mimes:jpg,png,jpeg','max:5048'],
-           // 'is_published'=>['required'],
-            'content'=>['required']
+            'excerpt' =>['required'],
+           'cover_image'=>['required','mimes:jpg,png,jpeg,','max:5048'],
+          // 'is_published'=>['required'],
+           'content'=>['required']
         ];
     }
 }

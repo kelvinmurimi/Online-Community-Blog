@@ -11,9 +11,12 @@ use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
+
+
+
     //
     public function index(){
-        $articles=Article::latest()->with(['user'])->paginate(20);
+        $articles=Article::latest()->with('user')->paginate(8);
         return view('articles.index',[
             'articles'=>$articles,
         ]);

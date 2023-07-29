@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Like;
 use App\Models\Article;
 use App\Models\Traits\HasUuid;
 use Laravel\Sanctum\HasApiTokens;
@@ -70,4 +71,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Article::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+
+
+
 }

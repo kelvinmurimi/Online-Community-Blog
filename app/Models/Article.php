@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 //use App\Models\Traits\HasUuid;
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,7 +49,16 @@ class Article extends Model
         'image'=>'images/person_1.jpg'
         ]);
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
+
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
   //  public $preventLazyLoading=true;
 
 }
