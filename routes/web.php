@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Livewire\Articlelikes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Roles\Edit;
@@ -13,14 +14,14 @@ use App\Http\Livewire\Admin\Users\ShowUser;
 use App\Http\Controllers\Tags\TagsController;
 use App\Http\Controllers\Auth\TwoFaController;
 use App\Http\Livewire\Admin\Settings\Settings;
-use App\Http\Controllers\Pages\PagesController;
 
+use App\Http\Controllers\Pages\PagesController;
+use App\Http\Controllers\Authers\AutherController;
 use App\Http\Livewire\Admin\SentEmails\SentEmails;
 use App\Http\Controllers\Articles\ArticleController;
 use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\dashboard\AdminArticlesController;
-use App\Http\Livewire\Articlelikes;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,9 @@ Route::prefix('tags')->group(function(){
 //Routes to like Article
 Route::post('/articles/{article}/likes', [Articlelikes::class, 'store'])->name('article.likes');
 Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->name('article.destroy');
+
+//Auther articles
+Route::get('auther/{user:username}/articles',[AutherController::class,'index'])->name('auther.articles');
 
 
 
