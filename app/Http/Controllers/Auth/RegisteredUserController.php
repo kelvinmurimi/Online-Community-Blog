@@ -70,7 +70,7 @@ class RegisteredUserController extends Controller
             'type' => 'Register',
         ]);
 
-        $user->sendEmailVerificationNotification();
+//$user->sendEmailVerificationNotification();
         flash('Please check your email for a verification link.')->info();
 
         return redirect()->back();

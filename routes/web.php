@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Livewire\Articlelikes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Roles\Edit;
@@ -12,11 +14,14 @@ use App\Http\Livewire\Admin\Users\ShowUser;
 use App\Http\Controllers\Tags\TagsController;
 use App\Http\Controllers\Auth\TwoFaController;
 use App\Http\Livewire\Admin\Settings\Settings;
+
 use App\Http\Controllers\Pages\PagesController;
+use App\Http\Controllers\Authers\AutherController;
 use App\Http\Livewire\Admin\SentEmails\SentEmails;
 use App\Http\Controllers\Articles\ArticleController;
 use App\Http\Livewire\Admin\SentEmails\SentEmailsBody;
 use App\Http\Controllers\Categories\CategoriesController;
+use App\Http\Controllers\dashboard\AdminArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,16 +58,29 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('roles', Roles::class)->name('admin.settings.roles.index');
         Route::get('roles/{role}/edit', Edit::class)->name('admin.settings.roles.edit');
     });
-
+           //users / Authers
     Route::prefix('users')->group(function () {
         Route::get('/', Users::class)->name('admin.users.index');
         Route::get('{user}/edit', EditUser::class)->name('admin.users.edit');
         Route::get('{user}', ShowUser::class)->name('admin.users.show');
     });
+    //articles dashboard
+    Route::prefix('dashboard')->group(function(){
+        Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
+        Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
+        Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
+        Route::get('/articles/{article}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
+        Route::patch('/articles/update/{article}',[AdminArticlesController::class,'update'])->name('admin.articles.update');
+        Route::delete('/articles/destroy/{$slug}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
+
+    });
+
 });
 //articles
 Route::prefix('articles')->group(function(){
     Route::get('/',[ArticleController::class,'index'])->name('articles.index');
+    //Show Article
+    Route::get('/{slug}',[ArticleController::class,'show'])->name('articles.show');
 });
 
 //categories
@@ -73,7 +91,15 @@ Route::prefix('categories')->group(function(){
 Route::prefix('tags')->group(function(){
     Route::get('/',[TagsController::class,'index'])->name('tags.index');
 });
- 
+
+
+//Routes to like Article
+Route::post('/articles/{article}/likes', [Articlelikes::class, 'store'])->name('article.likes');
+Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->name('article.destroy');
+
+//Auther articles
+Route::get('auther/{user:username}/articles',[AutherController::class,'index'])->name('auther.articles');
+
 
 
 
