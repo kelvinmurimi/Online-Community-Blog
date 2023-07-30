@@ -4,15 +4,22 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Pages;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Models\Article;
+use App\Http\Controllers\Controller;
 
 class PagesController extends Controller
 {
     //
     //Home Page
     public function index(){
-        return view('pages.home');
+        $articles=Article::with(['user','likes'])->latest()->paginate(6);
+        $home_slider=Article::with(['user','likes'])->latest()->paginate(3);
+        return view('pages.home',[
+            'articles'=>$articles,
+            'home_slider'=>$home_slider
+        ]);
     }
 
     //Contact Page
