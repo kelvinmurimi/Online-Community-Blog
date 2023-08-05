@@ -122,10 +122,10 @@ header {
 
 .site-logo a {
   color: #000;
-  font-size: 90px; }
+  font-size: 50px; }
   @media (max-width: 991.98px) {
     .site-logo a {
-      font-size: 40px; } }
+      font-size: 25px; } }
 
 .top-bar {
   background: #6610f2;
