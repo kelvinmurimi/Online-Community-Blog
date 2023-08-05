@@ -98,7 +98,7 @@ Route::post('/articles/{article}/likes', [Articlelikes::class, 'store'])->name('
 Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->name('article.destroy');
 
 //Auther articles
-Route::get('auther/{user:username}/articles',[AutherController::class,'index'])->name('auther.articles');
+Route::get('auther/{user:slug}/articles',[AutherController::class,'index'])->name('auther.articles');
 
 
 

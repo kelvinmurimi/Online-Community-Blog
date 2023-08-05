@@ -15,13 +15,14 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'username' => $this->faker->name(),
             'slug' => Str::slug($this->faker->name()),
             'email' => $this->faker->safeEmail(),
             'password' => Hash::make('password'),
             'is_active' => 1,
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
-            'image' => null,
+            'image' => 'users/avatar.png',
             'two_fa_active' => 0,
         ];
     }
