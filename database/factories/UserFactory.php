@@ -2,15 +2,22 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
+    public function configure(){
+        return $this->afterCreating(function(User $user){
+            $user->assignRole('Admin');
+        });
+
+    }
     public function definition(): array
     {
         return [
@@ -25,6 +32,7 @@ class UserFactory extends Factory
             'image' => 'users/avatar.png',
             'two_fa_active' => 0,
         ];
+
     }
 
     /**
