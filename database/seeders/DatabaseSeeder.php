@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             UserDatabaseSeeder::class,
           // ArticleDatabaseSeeder::class,
         ]);
-        User::factory(60)->create();
-        Article::factory(100)->create();
+        User::factory(20)->create();
+        Article::factory(200)->create();
 
     }
 }

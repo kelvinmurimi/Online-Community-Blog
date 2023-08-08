@@ -32,6 +32,10 @@ return new class extends Migration
             $table->string('invite_token')->nullable();
             $table->timestamp('last_activity')->nullable();
             $table->rememberToken();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+            $table->text('youtube')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
