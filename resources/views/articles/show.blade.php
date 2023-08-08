@@ -80,14 +80,16 @@
               <img src="{{ storage_url($article->user->image) }}" alt="{{$article->user->username }}" class="img-fluid">
               <div class="bio-body">
                 <h2>{{$article->user->username }}</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
+                <p>
+                    {{ $article->user->bio }}
+                .</p>
                 <p><a href="{{route('auther.articles',$article->user)}}" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
                 <p class="social">
-                  <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                  <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                  <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                  <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                </p>
+                    <a href=" {{ $article->user->facebook }}" class="p-2"><span class="fa fa-facebook"></span></a>
+                    <a href=" {{ $article->user->twitter }}" class="p-2"><span class="fa fa-twitter"></span></a>
+                    <a href=" {{ $article->user->instagram}}" class="p-2"><span class="fa fa-instagram"></span></a>
+
+                  </p>
               </div>
             </div>
           </div>

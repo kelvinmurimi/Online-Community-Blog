@@ -31,7 +31,7 @@ class Profile extends Component
     public $facebook = '';
     public $twitter = '';
     public $instagram = '';
-    public $youtube = '';
+    public $bio = '';
 
     public $image = '';
 
@@ -47,7 +47,7 @@ class Profile extends Component
         $this->facebook= $this->user->facebook;
         $this->twitter= $this->user->twitter;
         $this->instagram= $this->user->instagram;
-        $this->youtube= $this->user->youtube;
+        $this->bio= $this->user->bio;
     }
 
     public function render(): View
@@ -103,7 +103,7 @@ class Profile extends Component
         $this->user->facebook = $this->facebook;
         $this->user->twitter = $this->twitter;
         $this->user->instagram = $this->instagram;
-        $this->user->youtube = $this->youtube;
+        $this->user->bio = $this->bio;
         $this->user->save();
 
         add_user_log([

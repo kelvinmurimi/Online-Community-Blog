@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
-            $table->text('youtube')->nullable();
+            $table->text('bio')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
