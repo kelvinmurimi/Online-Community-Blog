@@ -1,5 +1,5 @@
 <div>
 
-    {{ $articlescount->count() }}<strong>Articles</strong>
+   <span>Over {{ $articlescount->count() }}</span> <strong>Articles</strong>
     {{-- Do your work, then step back. --}}
 </div>

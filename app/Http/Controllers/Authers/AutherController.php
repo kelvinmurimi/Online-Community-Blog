@@ -13,7 +13,7 @@ class AutherController extends Controller
     //
     public function index(User $user)
     {
-        $articles= $user->article()->with(['user', 'likes'])->paginate(2);
+        $articles= $user->article()->with(['user', 'likes'])->paginate(15);
 
         return view('articles.authers.index', [
             'user' => $user,

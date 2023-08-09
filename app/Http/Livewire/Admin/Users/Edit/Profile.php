@@ -1,5 +1,6 @@
 <?php
 
+
 declare(strict_types=1);
 
 namespace App\Http\Livewire\Admin\Users\Edit;
@@ -27,6 +28,10 @@ class Profile extends Component
     public $username = '';
 
     public $email = '';
+    public $facebook = '';
+    public $twitter = '';
+    public $instagram = '';
+    public $bio = '';
 
     public $image = '';
 
@@ -39,6 +44,10 @@ class Profile extends Component
         $this->name = $this->user->name;
         $this->username = $this->user->username;
         $this->email = $this->user->email;
+        $this->facebook= $this->user->facebook;
+        $this->twitter= $this->user->twitter;
+        $this->instagram= $this->user->instagram;
+        $this->bio= $this->user->bio;
     }
 
     public function render(): View
@@ -91,6 +100,10 @@ class Profile extends Component
         $this->user->username = $this->username;
         $this->user->slug = Str::slug($this->name);
         $this->user->email = $this->email;
+        $this->user->facebook = $this->facebook;
+        $this->user->twitter = $this->twitter;
+        $this->user->instagram = $this->instagram;
+        $this->user->bio = $this->bio;
         $this->user->save();
 
         add_user_log([

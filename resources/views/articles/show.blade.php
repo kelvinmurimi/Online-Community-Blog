@@ -9,12 +9,12 @@
         <div class="col-md-12 col-lg-8 main-content">
           <img src="{{ asset($article->image()) }}" alt="Image" class="img-fluid mb-5">
            <div class="post-meta">
-                      <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="Colorlib" class="mr-2">{{$article->user->username }}</span>&bullet;
+                      <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="Colorlib" class="mr-2"><a href="{{route('auther.articles',$article->user)}}">{{$article->user->username }}</a></span>&bullet;
                       <span class="mr-2">{{ $article->created_at()->diffForHumans() }} </span> &bullet;
                       <span class="ml-2"><span class="fa fa-book"></span><strong class="p-1" style="color: blue; ">{{ $article->min_to_read() }}</strong> Mins Read </span>
                     </div>
-          <h1 class="mb-4">  {{ $article->title() }}</h1>
-          <a class="category mb-5" href="#">Food</a> <a class="category mb-5" href="#">Travel</a>
+          <h3 class="mb-4">  {{ $article->title() }}</h3>
+
 
           <div class="post-content-body">
             <p>
@@ -29,7 +29,7 @@
 
 
           <div class="pt-5">
-            <p>Article Tags:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+            <p>Article Tags:  <a href="#">Food</a>, <a href="#">Travel</a>  Category: <a href="#">#manila</a>, <a href="#">#asia</a></p>
           </div>
 
 
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                   <label for="message">Comment</label>
-                  <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                  <textarea name="" id="message" cols="10" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                   <input type="submit" value="Publish Comment" class="btn btn-primary">
@@ -66,9 +66,35 @@
         <div class="col-md-12 col-lg-4 sidebar">
 
           <!-- END sidebar-box -->
-          @include('includes.article_user_profile')
+          <div class="sidebar-box search-form-wrap">
+            <form action="#" class="search-form">
+              <div class="form-group">
+                <span class="icon fa fa-search"></span>
+                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+              </div>
+            </form>
+          </div>
+          <!-- END sidebar-box -->
+          <div class="sidebar-box">
+            <div class="bio text-center">
+              <img src="{{ storage_url($article->user->image) }}" alt="{{$article->user->username }}" class="img-fluid">
+              <div class="bio-body">
+                <h2>{{$article->user->username }}</h2>
+                <p>
+                    {{ $article->user->bio }}
+                .</p>
+                <p><a href="{{route('auther.articles',$article->user)}}" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
+                <p class="social">
+                    <a href=" {{ $article->user->facebook }}" class="p-2"><span class="fa fa-facebook"></span></a>
+                    <a href=" {{ $article->user->twitter }}" class="p-2"><span class="fa fa-twitter"></span></a>
+                    <a href=" {{ $article->user->instagram}}" class="p-2"><span class="fa fa-instagram"></span></a>
 
-          @include('shared.popularposts')
+                  </p>
+              </div>
+            </div>
+          </div>
+
+         {{--@include('shared.popularposts')---}}
 
 
           @include('shared.categories')

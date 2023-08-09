@@ -4,9 +4,9 @@
             <img src="{{ asset($article->image()) }}" alt="Image placeholder">
             <div class="blog-content-body">
                 <div class="post-meta">
-                    <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="Colorlib"> &bullet;
+                    <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="{{ storage_url($article->user->name) }}"> &bullet;
                         <a href="{{route('auther.articles',$article->user)}}">{{ $article->user->username }}</a></span>&bullet;
-                    <span class="mr-2">{{ $article->created_at() }} </span> &bullet;
+                    <span class="mr-2">{{ $article->created_at->format('D-M-Y') }} </span> &bullet;
                     <span class="ml-2"><span class="fa fa-book"></span> {{ $article->min_to_read() }} Mins To
                         Read</span>
                 </div>
