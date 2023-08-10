@@ -19,7 +19,7 @@ class UpdateArticleRequest extends FormRequest
             //
             'title'=>['required','max:255'],
             'excerpt' =>['required'],
-           'cover_image'=>['required','mimes:jpg,png,jpeg,','max:5048'],
+          // 'cover_image'=>['required','mimes:jpg,png,jpeg,','max:5048'],
           // 'is_published'=>['required'],
            'content'=>['required']
         ];
