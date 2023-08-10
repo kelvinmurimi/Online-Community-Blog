@@ -35,6 +35,14 @@
         .article-link {
             color: rgb(61, 56, 56);
         }
+        .main{
+            color: #6610f2 !important;
+            font-weight: 900;
+        }
+        .active{
+            color: green !important;
+            font-weight: 900;
+        }
     </style>
 </head>
 
@@ -70,7 +78,7 @@
                         <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu"
                             role="button" aria-expanded="false" aria-controls="navbarMenu"><span
                                 class="burger-lines"></span></a>
-                        <h5 class="site-logo"><a href="index.html">{{ config('app.name', 'Laravel') }}</a></h5>
+                        <h5 class="site-logo"><a href="{{ route('pages.home') }}">{{ config('app.name', 'Laravel') }}</a></h5>
                         <livewire:articlecounter />
                     </div>
                 </div>
@@ -83,7 +91,7 @@
                     <div class="collapse navbar-collapse" id="navbarMenu">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link @if (Route::currentRouteName() == 'pages.home') active @endif "
+                                <a class="nav-link  @if (Route::currentRouteName() == 'pages.home') active @endif "
                                     href="{{ route('pages.home') }}">Home</a>
                             </li>
                             <li class="nav-item">
@@ -125,7 +133,7 @@
                               @endauth
                               @guest
                               <li class="nav-item">
-                                <a class="nav-link" href="{{route('login')}}">Login</a>
+                                <a class="nav-link main " href="{{route('login')}}">Login</a>
                              </li>
                              <li class="nav-item">
                                 <a class="nav-link" href="{{route('register')}}">Register</a>

@@ -8,10 +8,10 @@
            <div>
             <a href="{{ route('articles.show',$slider->slug()) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url({{ asset($slider->image()) }}); ">
               <div class="text half-to-full">
-                <span class="category mb-5">Food</span>
+
                 <div class="post-meta">
 
-                  <span class="author mr-2"><img src="{{ storage_url($slider->user->image) }}" alt="Colorlib"> Colorlib</span>&bullet;
+                  <span class="author mr-2"><img src="{{ storage_url($slider->user->image) }}" alt="Colorlib"> {{ $slider->user->username }}</span>&bullet;
                   <span class="mr-2">{{ $slider->created_at()->diffForHumans() }} </span> &bullet;
                   <span class="ml-2"><span class="fa fa-book"></span> {{ $slider->min_to_read }}Mins To Read</span>
 
