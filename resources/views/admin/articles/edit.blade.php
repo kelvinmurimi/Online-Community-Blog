@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('admin.articles.update',$article) }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('admin.articles.update',$article->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <div class="mb-5">
