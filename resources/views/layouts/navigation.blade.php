@@ -52,7 +52,19 @@
 @can('view_users')
     <x-nav.link route="admin.users.index" icon="fas fa-users">Users</x-nav.link>
 @endcan
+
 {{-- -admin User Articles --}}
 @can('view_users')
     <x-nav.link route="admin.articles.index" icon="fas fa-book">Articles</x-nav.link>
+@endcan
+
+
+
+
+
+
+
+{{-- -admin Categories --}}
+@can('view_users')
+    <x-nav.link route="categories.index" icon="fas fa-book">Categories</x-nav.link>
 @endcan
