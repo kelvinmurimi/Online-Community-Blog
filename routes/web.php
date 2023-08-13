@@ -74,6 +74,10 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::delete('/articles/destroy/{$slug}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
 
     });
+    //admin categories & Tags
+    Route::prefix('dashboardcategories')->group(function(){
+        Route::resource('/categories',AdmincategoriesController::class);
+    });
 
 });
 //articles

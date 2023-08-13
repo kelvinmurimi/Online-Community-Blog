@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             SettingsDatabaseSeeder::class,
             UserDatabaseSeeder::class,
            ArticleDatabaseSeeder::class,
+           CategoryTableSeeder::class
         ]);
        // Article::factory(100)->create();
 
