@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Http\Controllers\dashboard\AdmincategoriesController;
+
 use App\Http\Livewire\Articlelikes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Dashboard;
@@ -74,6 +76,10 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::delete('/articles/destroy/{article}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
 
     });
+    //admin categories & Tags
+    Route::prefix('dashboardcategories')->group(function(){
+        Route::resource('/categories',AdmincategoriesController::class);
+    });
 
 });
 //articles
@@ -85,7 +91,7 @@ Route::prefix('articles')->group(function(){
 
 //categories
 Route::prefix('categories')->group(function(){
-    Route::get('/',[CategoriesController::class,'index'])->name('categories.index');
+    Route::get('/',[CategoriesController::class,'index'])->name('frontend.categories.index');
 });
 //tags
 Route::prefix('tags')->group(function(){

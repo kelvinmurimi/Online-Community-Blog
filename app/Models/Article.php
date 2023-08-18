@@ -14,7 +14,7 @@ class Article extends Model
     use HasFactory;
    // use HasUuid;
     protected $fillable = [
-        'title', 'slug', 'min_to_read', 'excerpt', 'image', 'is_published', 'body','views'
+        'title', 'slug', 'min_to_read', 'excerpt', 'image', 'is_published', 'body','views','category_id'
     ];
 
     //make slug default instead of id
