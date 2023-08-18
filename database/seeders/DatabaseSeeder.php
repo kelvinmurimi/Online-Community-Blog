@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CategoryTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,12 +17,8 @@ class DatabaseSeeder extends Seeder
             RolesDatabaseSeeder::class,
             SettingsDatabaseSeeder::class,
             UserDatabaseSeeder::class,
-<<<<<<< HEAD
-           ArticleDatabaseSeeder::class,
-           CategoryTableSeeder::class
-=======
+            CategoryTableSeeder::class
           // ArticleDatabaseSeeder::class,
->>>>>>> 5b9989e209667c48986439c39ef6640c097d4f6b
         ]);
         User::factory(20)->create();
         Article::factory(200)->create();
