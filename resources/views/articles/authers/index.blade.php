@@ -6,174 +6,82 @@
       <div class="row blog-entries">
         <div class="col-md-12 col-lg-8 main-content">
 
-          <div class="row">
+          <div class="row" style="background-color: rgb(237, 237, 253);">
             <div class="col-md-12">
-              <h2 class="mb-4">Hi There! I'm {{$user->name}}</h2>
-              <p class="mb-5"><img src="" alt="Image placeholder" class="img-fluid"></p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum minima eveniet recusandae suscipit eum laboriosam fugit amet deleniti iste et. Ad dolores, necessitatibus non saepe tenetur impedit commodi quibusdam natus repellat, exercitationem accusantium perferendis officiis. Laboriosam impedit quia minus pariatur!</p>
-              <p>Dignissimos iste consectetur, nemo magnam nulla suscipit eius quibusdam, quo aperiam quia quae est explicabo nostrum ab aliquid vitae obcaecati tenetur beatae animi fugiat officia id ipsam sint? Obcaecati ea nisi fugit assumenda error totam molestiae saepe fugiat officiis quam?</p>
-              <p>Culpa porro quod doloribus dolore sint. Distinctio facilis ullam voluptas nemo voluptatum saepe repudiandae adipisci officiis, explicabo eaque itaque sed necessitatibus, fuga, ea eius et aliquam dignissimos repellendus impedit pariatur voluptates. Dicta perferendis assumenda, nihil placeat, illum quibusdam. Vel, incidunt?</p>
-              <p>Dolorum blanditiis illum quo quaerat, possimus praesentium perferendis! Quod autem optio nobis, placeat officiis dolorem praesentium odit. Vel, cum, a. Adipisci eligendi eaque laudantium dicta tenetur quod, pariatur sunt sed natus officia fuga accusamus reprehenderit ratione, provident possimus ut voluptatum.</p>
+              <h4 class="mb-4">Hi There! I'm <span class="main">{{$user->name}}</span></h4>
+              <p class="mb-5"><img src="{{ storage_url($user->image) }}" alt="Image placeholder" class="img-fluid"></p>
+              <p style="color: #363434;">
+               {{ $user->bio }}.
+              </p>
+              <p class="social">
+                <a href=" {{ $user->facebook }}" class="p-2"><span class="fa fa-facebook"></span></a>
+                <a href=" {{ $user->twitter }}" class="p-2"><span class="fa fa-twitter"></span></a>
+                <a href=" {{ $user->instagram}}" class="p-2"><span class="fa fa-instagram"></span></a>
+
+              </p>
+
             </div>
           </div>
 
           <div class="row mb-5 mt-5">
             <div class="col-md-12 mb-5">
-              <h2>My Latest Posts</h2>
+              <h2>My Latest Articles</h2>
             </div>
             <div class="col-md-12">
 
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_10.jpg);"></div>
+             @foreach ($articles as $article)
+
+             <div class="post-entry-horzontal">
+                <a href="{{ route('articles.show', $article->slug) }}">
+                  <div class="image" style="background-image: url({{ asset($article->image()) }});"></div>
                   <span class="text">
                     <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
+                      <span class="author mr-2"><img src="{{ storage_url($user->image) }}" alt="Colorlib"> {{$user->name }}</span>&bullet;
+                      <span class="mr-2">{{ $article->created_at() }} </span> &bullet;
+                      <span class="ml-2"><span class="fa fa-book"></span> {{ $article->min_to_read() }} Mins To
+                      Read</span>
                     </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
+                    <div class="d-flex justify-space-around ">
+                        <div>
+
+                            @auth
+                                @if (!$article->likedBy(auth()->user()))
+                                    <form  method="POST"
+                                        action="{{ route('article.likes', $article->slug) }}">
+                                        @csrf
+                                        <button type="submit" class="fa fa-thumbs-up btn-primary"
+                                            style="cursor: pointer;"></button>
+                                    </form>
+                                @else
+                                    <form  method="POST"
+                                        action="{{ route('article.destroy', $article->slug) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="fa fa-thumbs-down btn-primary"
+                                            style="cursor: pointer;">unlike</button>
+                                    </form>
+                                @endif
+                            @endauth
+
+                        </div>
+                        <div>
+                            <strong>{{ $article->likes->count() }}:{{ Str::plural('like', $article->likes->count()) }}</strong>
+                        </div>
+                    </div>
+                    <h2>{{ $article->title() }}</h2>
                   </span>
                 </a>
               </div>
+             @endforeach
               <!-- END post -->
 
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_11.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_12.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_9.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_8.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_7.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_6.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_5.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
-
-              <div class="post-entry-horzontal">
-                <a href="blog-single.html">
-                  <div class="image" style="background-image: url(images/img_4.jpg);"></div>
-                  <span class="text">
-                    <div class="post-meta">
-                      <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;
-                      <span class="mr-2">March 15, 2018 </span> &bullet;
-                      <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                    </div>
-                    <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                  </span>
-                </a>
-              </div>
-              <!-- END post -->
 
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-12 text-center">
-              <nav aria-label="Page navigation" class="text-center">
-                <ul class="pagination">
-                    <li class="page-item  active"><a class="page-link" href="#">&lt;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                  </ul>
-              </nav>
+
             </div>
           </div>
 
@@ -188,99 +96,13 @@
             <form action="#" class="search-form">
               <div class="form-group">
                 <span class="icon fa fa-search"></span>
-                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                <input type="text" class="form-control" id="s" placeholder="">
               </div>
             </form>
           </div>
           <!-- END sidebar-box -->
-          <div class="sidebar-box">
-            <div class="bio text-center">
-              <img src="images/person_1.jpg" alt="Image Placeholder" class="img-fluid">
-              <div class="bio-body">
-                <h2>Meagan Smith</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
-                <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
-                <p class="social">
-                  <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                  <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                  <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                  <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- END sidebar-box -->
-          <div class="sidebar-box">
-            <h3 class="heading">Popular Posts</h3>
-            <div class="post-entry-sidebar">
-              <ul>
-                <li>
-                  <a href="">
-                    <img src="images/img_2.jpg" alt="Image placeholder" class="mr-4">
-                    <div class="text">
-                      <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                      <div class="post-meta">
-                        <span class="mr-2">March 15, 2018 </span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/img_4.jpg" alt="Image placeholder" class="mr-4">
-                    <div class="text">
-                      <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                      <div class="post-meta">
-                        <span class="mr-2">March 15, 2018 </span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/img_12.jpg" alt="Image placeholder" class="mr-4">
-                    <div class="text">
-                      <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                      <div class="post-meta">
-                        <span class="mr-2">March 15, 2018 </span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- END sidebar-box -->
-
-          <div class="sidebar-box">
-            <h3 class="heading">Categories</h3>
-            <ul class="categories">
-              <li><a href="#">Food <span>(12)</span></a></li>
-              <li><a href="#">Travel <span>(22)</span></a></li>
-              <li><a href="#">Lifestyle <span>(37)</span></a></li>
-              <li><a href="#">Business <span>(42)</span></a></li>
-              <li><a href="#">Adventure <span>(14)</span></a></li>
-            </ul>
-          </div>
-          <!-- END sidebar-box -->
-
-          <div class="sidebar-box">
-            <h3 class="heading">Tags</h3>
-            <ul class="tags">
-              <li><a href="#">Travel</a></li>
-              <li><a href="#">Adventure</a></li>
-              <li><a href="#">Food</a></li>
-              <li><a href="#">Lifestyle</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Freelancing</a></li>
-              <li><a href="#">Travel</a></li>
-              <li><a href="#">Adventure</a></li>
-              <li><a href="#">Food</a></li>
-              <li><a href="#">Lifestyle</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Freelancing</a></li>
-            </ul>
-          </div>
+          @include('shared.categories')
+          @include('shared.tags')
         </div>
         <!-- END sidebar -->
 

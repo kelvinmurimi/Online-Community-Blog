@@ -2,28 +2,37 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
+    public function configure(){
+        return $this->afterCreating(function(User $user){
+            $user->assignRole('admin');
+        });
+
+    }
     public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
+            'username' => $this->faker->name(),
             'slug' => Str::slug($this->faker->name()),
             'email' => $this->faker->safeEmail(),
             'password' => Hash::make('password'),
             'is_active' => 1,
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
-            'image' => null,
+            'image' => 'users/avatar.png',
             'two_fa_active' => 0,
         ];
+
     }
 
     /**

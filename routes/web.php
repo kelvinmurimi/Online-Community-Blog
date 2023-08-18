@@ -73,7 +73,7 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
         Route::get('/articles/{article}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
         Route::patch('/articles/update/{article}',[AdminArticlesController::class,'update'])->name('admin.articles.update');
-        Route::delete('/articles/destroy/{$slug}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
+        Route::delete('/articles/destroy/{article}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
 
     });
     //admin categories & Tags
@@ -104,7 +104,7 @@ Route::post('/articles/{article}/likes', [Articlelikes::class, 'store'])->name('
 Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->name('article.destroy');
 
 //Auther articles
-Route::get('auther/{user:username}/articles',[AutherController::class,'index'])->name('auther.articles');
+Route::get('auther/{user:slug}/articles',[AutherController::class,'index'])->name('auther.articles');
 
 
 

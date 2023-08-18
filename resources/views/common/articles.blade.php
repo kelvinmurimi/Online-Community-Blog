@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h2 class="mb-4">Latest Posts</h2>
+          <h2 class="mb-4">Latest Articlesg</h2>
         </div>
       </div>
       <div class="row blog-entries">
@@ -25,9 +25,9 @@
         <!-- END main-content -->
 
         <div class="col-md-12 col-lg-4 sidebar">
-            @include('shared.bestauther')
+
           <!-- END sidebar-box -->
-          @include('shared.popularposts')
+
           <!-- END sidebar-box -->
           @include('shared.categories')
           <!-- END sidebar-box -->

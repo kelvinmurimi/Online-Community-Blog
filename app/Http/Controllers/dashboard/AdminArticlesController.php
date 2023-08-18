@@ -21,7 +21,7 @@ class AdminArticlesController extends Controller
     public function index()
     {
         //
-        $articles=Article::latest()->paginate(6);
+        $articles=Article::orderBy('updated_at','desc')->paginate(25);
         return view('admin.articles.index',[
             'articles'=>$articles,
         ]);
@@ -109,8 +109,16 @@ class AdminArticlesController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy(Article $article)
     {
         //
+        $current_cover_image=$article->image();
+        if(File::exists($current_cover_image))
+        {
+            File::delete($current_cover_image);
+        }
+
+        $article->delete();
+        return redirect(route('admin.articles.index'))->with('danger', 'Article  Deleted!');
     }
 }

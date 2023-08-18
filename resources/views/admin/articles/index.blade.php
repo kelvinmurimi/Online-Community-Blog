@@ -76,12 +76,16 @@
                             <img src="{{ asset($article->image()) }}" alt="{{ $article->title() }}" width="80" class="h-12 w-12 rounded-full">
 
                     </div>
-                    <div class="pl-1 pt-1">{{Str::limit($article->title(),100) }}</div>
+                    <div class="pl-1 pt-1">{{Str::limit($article->title(),500) }}</div>
                 </td>
                <td>
                     <div class="flex space-x-2">
-                      <a href="{{ route('admin.articles.edit',$article) }}"class="btn btn-primary" >{{ __('Edit') }}</a>
-                    <a href="" class="btn btn-danger bg-red-800 :hover bg-red-600 text-gray-50">{{ __('Delete') }}</a>
+                      <a href="{{ route('admin.articles.edit',$article->slug) }}"class="btn btn-primary" >{{ __('Edit') }}</a>
+                    <form action="{{ route('admin.articles.destroy',$article->slug) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit"  class="btn btn-danger bg-red-800 :hover bg-red-600 text-gray-50">{{ __('Delete') }}</button>
+                    </form>
                    </div>
                 </td>
             </tr>
