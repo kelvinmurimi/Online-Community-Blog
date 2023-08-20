@@ -60,5 +60,9 @@ class Article extends Model
         return $this->likes->contains('user_id', $user->id);
     }
   //  public $preventLazyLoading=true;
+  //category relationship
+   public function category(){
+      return $this->belongsTo(Category::class);
+    }
 
 }
