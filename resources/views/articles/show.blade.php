@@ -29,7 +29,7 @@
 
 
           <div class="pt-5">
-            <p>Article Tags:  <a href="#">Food</a>, <a href="#">Travel</a>  Category: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+            <p>Article Category:<a href="#">{{$article->category->name}}</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
           </div>
 
 

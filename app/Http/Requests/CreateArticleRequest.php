@@ -19,6 +19,7 @@ class CreateArticleRequest extends FormRequest
             //
             'title'=>['required','max:255'],
              'excerpt' =>['required'],
+             'category_id'=>['required'],
             'cover_image'=>['required','mimes:jpg,png,jpeg','max:5048'],
            // 'is_published'=>['required'],
             'content'=>['required']

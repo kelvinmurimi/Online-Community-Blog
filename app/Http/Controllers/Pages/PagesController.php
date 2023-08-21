@@ -8,17 +8,20 @@ use Illuminate\Http\Request;
 
 use App\Models\Article;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class PagesController extends Controller
 {
     //
     //Home Page
     public function index(){
-        $articles=Article::with(['user','likes'])->latest()->paginate(6);
+        $categories=Category::with('article')->latest()->get();
+        $articles=Article::with(['user','likes'])->latest()->paginate(6);//'categories'
         $home_slider=Article::with(['user','likes'])->latest()->paginate(3);
         return view('pages.home',[
             'articles'=>$articles,
-            'home_slider'=>$home_slider
+            'home_slider'=>$home_slider,
+            'categories'=>$categories
         ]);
     }
 

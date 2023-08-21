@@ -39,6 +39,7 @@
                 </div>
                 <h2 class="article-link"><a href="{{ route('articles.show', $article->slug) }}"
                         class="article-link">{{ $article->title() }}</a></h2>
+
             </div>
 
         </div>
