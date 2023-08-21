@@ -4,34 +4,35 @@
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6">
-          <h2 class="mb-4">Category: Food</h2>
+            @if($category)
+          <h2 class="mb-4">Category:{{ $category->name }}</h2>
+          <span class="text-black"><b>{{ $category->article->count() }}</b>:<strong>Articles</strong></span>
+          @endif
         </div>
       </div>
       <div class="row blog-entries">
         <div class="col-md-12 col-lg-8 main-content">
           <div class="row mb-5 mt-5">
 
-           @include('includes.articlelist')
+           @include('shared.articlelist')
           </div>
 
           @include('common.paginationlinks')
 
-          
+
 
         </div>
 
         <!-- END main-content -->
 
         <div class="col-md-12 col-lg-4 sidebar">
-            @include('shared.bestauther')
-           
-            @include('shared.popularposts')
-          
-  
+
+
+
             @include('shared.categories')
-            
-  
-            @include('shared.tags')
+
+
+
 
       </div>
     </div>

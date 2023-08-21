@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\dashboard;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,7 +31,10 @@ class AdminArticlesController extends Controller
     public function create()
     {
         //
-        return view('admin.articles.create');
+        $categories=Category::all();
+        return view('admin.articles.create',[
+            'categories'=>$categories,
+        ]);
     }
 
     public function store(CreateArticleRequest $request)
@@ -48,6 +52,7 @@ class AdminArticlesController extends Controller
         $request->user()->article()->create([
             'title'=>$request->title,
             'slug'=>$slug,
+            'category_id'=>$request->category_id,
             'min_to_read'=>rand(5,15),
             'image'=>$cover_image,
             'is_published'=>1,
@@ -68,12 +73,17 @@ class AdminArticlesController extends Controller
         //
         //dd($article);
         //$article=Article::findOrFail($article);
+
+        $categories=Category::all();
+
         $article=Article::findOrFail($id);
         if($article->user_id != auth()->id()) {
              abort(403, 'Unauthorized Action');
          }
+
         return view('admin.articles.edit',[
             'article'=>$article,
+            'categories'=>$categories,
         ]);
     }
 
@@ -100,6 +110,7 @@ class AdminArticlesController extends Controller
         $slug=Str::slug($request->title,'-');
         $request->user()->article()->update([
             'title'=>$request->title,
+            'category_id'=>$request->category_id,
             'slug'=>time().'-'.$slug,
             'min_to_read'=>rand(5,15),
             'image'=>$cover_image,

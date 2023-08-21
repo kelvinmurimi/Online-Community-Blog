@@ -107,7 +107,8 @@ Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->
 //Auther articles
 Route::get('auther/{user:slug}/articles',[AutherController::class,'index'])->name('auther.articles');
 
-
+//Category articles
+Route::get('Categories/{category:id}/articles',[CategoriesController::class,'index'])->name('categories.articles');
 
 
 
