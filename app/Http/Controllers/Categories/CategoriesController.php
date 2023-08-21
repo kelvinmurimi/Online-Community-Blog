@@ -14,7 +14,7 @@ class CategoriesController extends Controller
     //
     public function index($id){
         //get articles that have that category
-        $articles= Article::where('category_id',$id)->with(['user', 'likes'])->paginate(15);
+        $articles= Article::where('category_id',$id)->with(['user', 'likes'])->latest()->paginate(15);
         //dd($articles);
         //get category for articles
         $category=Category::with('article')->where('id',$id)->first();
