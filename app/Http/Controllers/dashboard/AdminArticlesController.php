@@ -68,12 +68,19 @@ class AdminArticlesController extends Controller
         //
     }
 
-    public function edit(Article $article)
+    public function edit($id)
     {
         //
         //dd($article);
         //$article=Article::findOrFail($article);
+
         $categories=Category::all();
+
+        $article=Article::findOrFail($id);
+        if($article->user_id != auth()->id()) {
+             abort(403, 'Unauthorized Action');
+         }
+
         return view('admin.articles.edit',[
             'article'=>$article,
             'categories'=>$categories,

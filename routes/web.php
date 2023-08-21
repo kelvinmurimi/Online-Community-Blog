@@ -71,9 +71,10 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
         Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
         Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
-        Route::get('/articles/{article}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
-        Route::patch('/articles/update/{article}',[AdminArticlesController::class,'update'])->name('admin.articles.update');
-        Route::delete('/articles/destroy/{article}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
+        Route::get('/articles/{id}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
+        Route::patch('/articles/update/{id}',[AdminArticlesController::class,'update'])->name('admin.articles.update');
+        Route::delete('/articles/destroy/{id}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
+        Route::get('/articles/auther/manage',[AutherController::class,'manageAutherArticles'])->name('admin.articles.manage');
 
     });
     //admin categories & Tags

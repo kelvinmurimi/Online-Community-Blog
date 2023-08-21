@@ -9,6 +9,9 @@
 
         </div>
 
+
+
+
     </div>
 
     <div class="mt-5 mb-5 grid sm:grid-cols-1 md:grid-cols-3 gap-4">
@@ -86,6 +89,7 @@
                         @csrf
                         <button type="submit"  class="btn btn-danger bg-red-800 :hover bg-red-600 text-gray-50">{{ __('Delete') }}</button>
                     </form>
+
                    </div>
                 </td>
             </tr>
