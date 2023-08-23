@@ -12,6 +12,9 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('article_id')->nullable()->constrained('articles')->onDelete('cascade')->onUpdate('cascade');
+            $table->text('content');
             $table->timestamps();
         });
     }

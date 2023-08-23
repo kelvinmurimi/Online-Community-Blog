@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 //use Database\Factories\ArticleFactory;
+use App\Models\Comment;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Database\Seeder;
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
           // ArticleDatabaseSeeder::class,
         ]);
         User::factory(20)->create();
-        Article::factory(200)->create();
+        Article::factory(100)->create();
+        Comment::factory(400)->create();
 
     }
 }

@@ -1,6 +1,7 @@
 @extends('frontend.base')
 
 @section('content')
+{{-- dd($article->comment) --}}
 <section class="site-section py-lg">
     <div class="container">
 
@@ -34,7 +35,7 @@
 
 
           <div class="pt-5">
-            <h3 class="mb-5">6 Comments</h3>
+            <h3 class="mb-5">{{ $article->comment->count() }} Comments</h3>
             <ul class="comment-list">
                 @include('includes.article_comments')
             </ul>
@@ -121,5 +122,7 @@
     </div>
 
 
+
   </section>
+
 @endsection
