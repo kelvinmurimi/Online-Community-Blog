@@ -29,7 +29,7 @@ class ArticleController extends Controller
     public function show(Article $slug){
       //  $article =Article::findOrFail($slug);
      // dd($slug->category_id);
-      $relatedArticles=Article::where('category_id',$slug->category_id)->with(['category','user','likes'])->latest()->paginate(6);
+      $relatedArticles=Article::where('category_id',$slug->category_id)->with(['category'])->latest()->paginate(6);
       //dd($relatedArticles);
       $categories=Category::with('article')->latest()->get();
       $comments=Comment::where('article_id',$slug->id)->with('user')->paginate(5);

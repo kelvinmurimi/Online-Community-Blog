@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\dashboard\AdmincategoriesController;
 
 use App\Http\Livewire\Articlelikes;
@@ -110,7 +111,9 @@ Route::get('auther/{user:slug}/articles',[AutherController::class,'index'])->nam
 //Category articles
 Route::get('Categories/{category:id}/articles',[CategoriesController::class,'index'])->name('categories.articles');
 
-
+//create comment
+Route::post('comment/create/{id}',[CommentsController::class,'create'])->name('comment.create');
+Route::delete('comment/destroy/{id}',[CommentsController::class,'destroy'])->name('comment.destroy');
 
 
 

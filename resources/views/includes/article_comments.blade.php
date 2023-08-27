@@ -11,6 +11,14 @@
       <p>
         {{ $comment->content }}
       </p>
+    @if ($comment->user_id === auth()->id())
+    <form action="{{ route('comment.destroy',$comment->id) }}" method="post">
+        @csrf
+        @method('delete')
+        <button type="submit" class="btn btn-danger">delete</button>
+      </form>
+
+    @endif
 
     </div>
   </li>
