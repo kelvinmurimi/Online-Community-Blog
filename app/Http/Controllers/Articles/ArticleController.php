@@ -29,15 +29,15 @@ class ArticleController extends Controller
     public function show(Article $slug){
       //  $article =Article::findOrFail($slug);
      // dd($slug->category_id);
-      $relatedArticles=Article::where('category_id',$slug->category_id)->with(['category','user','likes','comment'])->latest()->paginate(6);
+      $relatedArticles=Article::where('category_id',$slug->category_id)->with(['category','user','likes'])->latest()->paginate(6);
       //dd($relatedArticles);
       $categories=Category::with('article')->latest()->get();
-     // $comments=Comment::where('article_id',$slug->id)->get();
+      $comments=Comment::where('article_id',$slug->id)->with('user')->paginate(5);
         return view('articles.show',[
             'article'=>$slug,
             'categories'=>$categories,
             'relatedArticles'=>$relatedArticles,
-           // 'comments'=>$comments,
+             'comments'=>$comments,
         ]);
     }
 
