@@ -14,7 +14,7 @@ class UserFactory extends Factory
 {
     public function configure(){
         return $this->afterCreating(function(User $user){
-            $user->assignRole('admin');
+            $user->assignRole('auther');
         });
 
     }
@@ -23,6 +23,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'username' => $this->faker->name(),
+            'bio' => $this->faker->text(),
             'slug' => Str::slug($this->faker->name()),
             'email' => $this->faker->safeEmail(),
             'password' => Hash::make('password'),

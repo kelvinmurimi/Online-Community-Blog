@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             CategoryTableSeeder::class
           // ArticleDatabaseSeeder::class,
         ]);
-        User::factory(20)->create();
-        Article::factory(100)->create();
-        Comment::factory(400)->create();
+        User::factory(50)->create();
+        Article::factory(300)->create();
+        Comment::factory(1000)->create();
 
     }
 }
