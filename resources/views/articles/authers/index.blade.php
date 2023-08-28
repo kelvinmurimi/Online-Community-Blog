@@ -33,7 +33,7 @@
 
              <div class="post-entry-horzontal">
                 <a href="{{ route('articles.show', $article->slug) }}">
-                  <div class="image" style="background-image: url({{ asset($article->image()) }});"></div>
+                  <div class="image" style="background-image: url({{ asset($article->image) }});"></div>
                   <span class="text">
                     <div class="post-meta">
                       <span class="author mr-2"><img src="{{ storage_url($user->image) }}" alt="Colorlib"> {{$user->name }}</span>&bullet;

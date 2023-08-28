@@ -1,7 +1,7 @@
 @foreach ($articles as $article)
     <div class="col-md-6">
         <div class="blog-entry element-animate" data-animate-effect="fadeIn">
-            <img src="{{ asset($article->image()) }}" alt="Image placeholder">
+            <img src="{{ asset($article->image) }}" alt="Image placeholder">
             <div class="blog-content-body">
                 <div class="post-meta">
                     <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="{{ storage_url($article->user->name) }}"> &bullet;

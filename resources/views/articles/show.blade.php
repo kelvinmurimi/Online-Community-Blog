@@ -9,7 +9,7 @@
       <div class="row blog-entries element-animate">
 
         <div class="col-md-12 col-lg-8 main-content">
-          <img src="{{ asset($article->image()) }}" alt="Image" class="img-fluid mb-5">
+          <img src="{{ asset($article->image)}}" alt="Image" class="img-fluid mb-5">
            <div class="post-meta">
                       <span class="author mr-2"><img src="{{ storage_url($article->user->image) }}" alt="Colorlib" class="mr-2"><a href="{{route('auther.articles',$article->user)}}">{{$article->user->username }}</a></span>&bullet;
                       <span class="mr-2">{{ $article->created_at()->diffForHumans() }} </span> &bullet;

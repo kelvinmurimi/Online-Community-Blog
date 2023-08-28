@@ -92,7 +92,7 @@ class AdminArticlesController extends Controller
         $request->validated();
         //
 
-        $current_cover_image=$article->image();
+        $current_cover_image=$article->image;
 
         if ($request->hasFile('cover_image')) {
                 //check if image exists then delete it
@@ -126,6 +126,7 @@ class AdminArticlesController extends Controller
     public function destroy(Article $article)
     {
         //
+
         $current_cover_image=$article->image;
         if(File::exists($current_cover_image))
         {

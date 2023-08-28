@@ -24,9 +24,7 @@ class Article extends Model
     public function title(){
         return $this->title;
     }
-    public function image(){
-        return $this->image;
-    }
+
     public function slug(){
         return $this->slug;
     }

@@ -73,7 +73,7 @@
                 <td class="flex">
                     <div>
 
-                            <img src="{{ asset($article->image()) }}" alt="{{ $article->title() }}" width="80" class="h-12 w-12 rounded-full">
+                            <img src="{{ asset($article->image) }}" alt="{{ $article->title() }}" width="80" class="h-12 w-12 rounded-full">
 
                     </div>
                     <div class="pl-1 pt-1">{{Str::limit($article->title(),100) }}</div>
