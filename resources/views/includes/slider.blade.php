@@ -6,7 +6,7 @@
           <div class="owl-carousel owl-theme home-slider">
            @foreach ($home_slider as $slider)
            <div>
-            <a href="{{ route('articles.show',$slider->slug()) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url({{ asset($slider->image()) }}); ">
+            <a href="{{ route('articles.show',$slider->slug()) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url({{ asset($slider->image) }}); ">
               <div class="text half-to-full">
 
                 <div class="post-meta">

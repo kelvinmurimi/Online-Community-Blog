@@ -57,6 +57,10 @@
 @can('view_roles')
     <x-nav.link route="admin.articles.index" icon="fas fa-book">Articles</x-nav.link>
 @endcan
+{{-- -auther User Articles --}}
+@can('view_users')
+    <x-nav.link route="admin.articles.manage" icon="fas fa-book">Your Articles</x-nav.link>
+@endcan
 
 
 

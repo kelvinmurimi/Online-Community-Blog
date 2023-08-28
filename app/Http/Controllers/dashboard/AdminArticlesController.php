@@ -77,9 +77,7 @@ class AdminArticlesController extends Controller
         $categories=Category::all();
 
         $article=Article::findOrFail($id);
-        if($article->user_id != auth()->id()) {
-             abort(403, 'Unauthorized Action');
-         }
+
 
         return view('admin.articles.edit',[
             'article'=>$article,
@@ -87,11 +85,11 @@ class AdminArticlesController extends Controller
         ]);
     }
 
-    public function update(UpdateArticleRequest $request,Article $article)
+    public function update(UpdateArticleRequest $request,$id)
     {
         $request->validated();
         //
-
+        $article=Article::findOrFail($id);
         $current_cover_image=$article->image;
 
         if ($request->hasFile('cover_image')) {
@@ -103,12 +101,12 @@ class AdminArticlesController extends Controller
          $cover_image='images/articles'.'/'.time().'.'.$request->cover_image->extension();
          $request->cover_image->move(public_path('images/articles'),$cover_image);
         }else{
-            $cover_image=$article->image();
+            $cover_image=$article->image;
         }
 
 
         $slug=Str::slug($request->title,'-');
-        $request->user()->article()->update([
+            $article->update([
             'title'=>$request->title,
             'category_id'=>$request->category_id,
             'slug'=>time().'-'.$slug,
@@ -123,10 +121,10 @@ class AdminArticlesController extends Controller
 
     }
 
-    public function destroy(Article $article)
+    public function destroy($id)
     {
         //
-
+      $article=Article::findOrFail($id);
         $current_cover_image=$article->image;
         if(File::exists($current_cover_image))
         {
