@@ -126,7 +126,7 @@ class AdminArticlesController extends Controller
     public function destroy(Article $article)
     {
         //
-        $current_cover_image=$article->image();
+        $current_cover_image=$article->image;
         if(File::exists($current_cover_image))
         {
             File::delete($current_cover_image);

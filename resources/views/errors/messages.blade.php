@@ -25,7 +25,7 @@
 @endif
 
 @if (session('success'))
-    <div class="alert alert-green">
+    <div class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
@@ -40,3 +40,4 @@
         {{ session('danger') }}
     </div>
 @endif
+

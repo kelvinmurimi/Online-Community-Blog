@@ -1,3 +1,4 @@
+
 <x-guest-layout>
     <x-auth-card>
         @section('title', __('Login'))

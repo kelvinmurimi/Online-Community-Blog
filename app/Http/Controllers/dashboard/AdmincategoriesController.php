@@ -50,9 +50,7 @@ class AdmincategoriesController extends Controller
     {
         //
         $category=Category::findOrFail($id);
-        if($category->user_id != auth()->id()) {
-             abort(403, 'Unauthorized Action');
-         }
+
           $category=Category::findOrFail($id);
         return view('admin.categories.edit',[
             'category'=>$category,
@@ -63,9 +61,7 @@ class AdmincategoriesController extends Controller
     {
         //
         $category=Category::findOrFail($id);
-        if($category->user_id != auth()->id()) {
-             abort(403, 'Unauthorized Action');
-         }
+
         $request->validated();
 
         $category->update([
@@ -80,9 +76,7 @@ class AdmincategoriesController extends Controller
     {
         //
         $category=Category::findOrFail($id);
-        if($category->user_id != auth()->id()) {
-             abort(403, 'Unauthorized Action');
-         }
+
 
         $category->delete();
         return redirect(route('categories.index'))->with('danger', 'Category deleted successfully!');

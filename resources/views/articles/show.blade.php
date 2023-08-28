@@ -1,6 +1,8 @@
 @extends('frontend.base')
 
 @section('content')
+@include('errors.messages')
+{{-- dd($article->comment) --}}
 <section class="site-section py-lg">
     <div class="container">
 
@@ -34,28 +36,30 @@
 
 
           <div class="pt-5">
-            <h3 class="mb-5">6 Comments</h3>
+            <h3 class="mb-5">{{ $article->comment->count() }} Comments</h3>
             <ul class="comment-list">
                 @include('includes.article_comments')
             </ul>
             <!-- END comment-list -->
 
             <div class="comment-form-wrap pt-5">
-              <h3 class="mb-5">Leave a comment</h3>
-              <form action="#" class="p-5 bg-light">
+             @auth <h3 class="mb-5">Leave a comment</h3>
 
-
-
-
-                <div class="form-group">
+             <form action="{{ route('comment.create',$article->id) }}" class="p-5 bg-light" method="post">
+                @csrf
+             <div class="form-group">
                   <label for="message">Comment</label>
-                  <textarea name="" id="message" cols="10" rows="5" class="form-control"></textarea>
+                  <textarea name="content" id="message" cols="10" rows="5" class="form-control"></textarea>
                 </div>
+                @error('content')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 <div class="form-group">
                   <input type="submit" value="Publish Comment" class="btn btn-primary">
                 </div>
 
               </form>
+             @endauth
             </div>
           </div>
 
@@ -121,5 +125,7 @@
     </div>
 
 
+
   </section>
+
 @endsection

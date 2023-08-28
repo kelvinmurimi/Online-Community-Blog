@@ -1,5 +1,5 @@
-<div>
-    <section class="hero container max-w-screen-lg mx-auto text-center">
+<div >
+    <section class="hero container max-w-screen-lg mx-auto text-center" >
         @php
             //cache the logo setting to reduce calling the database
             $loginLogo = Cache::rememberForever('loginLogo', function () {

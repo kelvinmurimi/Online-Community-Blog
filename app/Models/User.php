@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Article;
 use App\Models\Traits\HasUuid;
@@ -77,7 +78,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Like::class);
     }
 
-
+   /* public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }*/
 
 
 }
