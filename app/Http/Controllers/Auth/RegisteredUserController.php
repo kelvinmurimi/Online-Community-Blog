@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
             'is_office_login_only' => 0,
         ]);
 
-        $user->assignRole('admin');
+        $user->assignRole('auther');
 
         //generate image
         $name = get_initials($user->name);
@@ -72,7 +72,7 @@ class RegisteredUserController extends Controller
 
 //$user->sendEmailVerificationNotification();
         flash('Please check your email for a verification link.')->info();
-
+        flash('Account created you can now Login.')->info();
         return redirect()->back();
     }
 }
