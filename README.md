@@ -50,7 +50,7 @@
 
 
 #### Installation
-Clone this repo: `git clone](https://github.com/kelvinmurimi/Online-Community-Blog.git`
+Clone this repo: `git clone https://github.com/kelvinmurimi/Online-Community-Blog.git`
 
  ### run 
  `` composer install``
