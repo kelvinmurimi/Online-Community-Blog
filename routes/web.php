@@ -39,16 +39,18 @@ use App\Http\Controllers\dashboard\AdminArticlesController;
 
 
 //Home Page
-Route::get('/', [PagesController::class,'index'])->name('pages.home');
+Route::get('/', [PagesController::class, 'index'])->name('pages.home');
+
 //Pages
-Route::prefix('pages')->group(function(){
-    Route::get('contact',[PagesController::class,'contact'])->name('pages.contact');
+Route::prefix('pages')->group(function () {
+    Route::get('contact', [PagesController::class, 'contact'])->name('pages.contact');
+    Route::post('contact/store', [PagesController::class, 'store'])->name('contact.store');
 });
 
 
 
 Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCheckMiddleware'])->group(function () {
-    Route::get('/', Dashboard::class)->name('dashboard');// 'verified',->to be added later in middleware above
+    Route::get('/', Dashboard::class)->name('dashboard'); // 'verified',->to be added later in middleware above
 
     Route::get('2fa', [TwoFaController::class, 'index'])->name('2fa');
     Route::post('2fa', [TwoFaController::class, 'update'])->name('2fa.update');
@@ -61,43 +63,43 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
         Route::get('roles', Roles::class)->name('admin.settings.roles.index');
         Route::get('roles/{role}/edit', Edit::class)->name('admin.settings.roles.edit');
     });
-           //users / Authers
+    //users / Authers
     Route::prefix('users')->group(function () {
         Route::get('/', Users::class)->name('admin.users.index');
         Route::get('{user}/edit', EditUser::class)->name('admin.users.edit');
         Route::get('{user}', ShowUser::class)->name('admin.users.show');
     });
     //articles dashboard
-    Route::prefix('dashboard')->group(function(){
-        Route::get('/articles',[AdminArticlesController::class,'index'])->name('admin.articles.index');
-        Route::get('/articles/create',[AdminArticlesController::class,'create'])->name('admin.articles.create');
-        Route::post('/articles/store',[AdminArticlesController::class,'store'])->name('admin.articles.store');
-        Route::get('/articles/{id}/edit',[AdminArticlesController::class,'edit'])->name('admin.articles.edit');
-        Route::patch('/articles/update/{id}',[AdminArticlesController::class,'update'])->name('admin.articles.update');
-        Route::delete('/articles/destroy/{id}',[AdminArticlesController::class,'destroy'])->name('admin.articles.destroy');
-        Route::get('/articles/auther/manage',[AutherController::class,'manageAutherArticles'])->name('admin.articles.manage');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/articles', [AdminArticlesController::class, 'index'])->name('admin.articles.index');
+        Route::get('/articles/create', [AdminArticlesController::class, 'create'])->name('admin.articles.create');
+        Route::post('/articles/store', [AdminArticlesController::class, 'store'])->name('admin.articles.store');
+        Route::get('/articles/{id}/edit', [AdminArticlesController::class, 'edit'])->name('admin.articles.edit');
+        Route::patch('/articles/update/{id}', [AdminArticlesController::class, 'update'])->name('admin.articles.update');
+        Route::delete('/articles/destroy/{id}', [AdminArticlesController::class, 'destroy'])->name('admin.articles.destroy');
+        Route::get('/articles/auther/manage', [AutherController::class, 'manageAutherArticles'])->name('admin.articles.manage');
 
     });
     //admin categories & Tags
-    Route::prefix('dashboardcategories')->group(function(){
-        Route::resource('/categories',AdmincategoriesController::class);
+    Route::prefix('dashboardcategories')->group(function () {
+        Route::resource('/categories', AdmincategoriesController::class);
     });
 
 });
 //articles
-Route::prefix('articles')->group(function(){
-    Route::get('/',[ArticleController::class,'index'])->name('articles.index');
+Route::prefix('articles')->group(function () {
+    Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
     //Show Article
-    Route::get('/{slug}',[ArticleController::class,'show'])->name('articles.show');
+    Route::get('/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 });
 
 //categories
-Route::prefix('categories')->group(function(){
-    Route::get('/',[CategoriesController::class,'index'])->name('frontend.categories.index');
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoriesController::class, 'index'])->name('frontend.categories.index');
 });
 //tags
-Route::prefix('tags')->group(function(){
-    Route::get('/',[TagsController::class,'index'])->name('tags.index');
+Route::prefix('tags')->group(function () {
+    Route::get('/', [TagsController::class, 'index'])->name('tags.index');
 });
 
 
@@ -106,18 +108,18 @@ Route::post('/articles/{article}/likes', [Articlelikes::class, 'store'])->name('
 Route::delete('/articles/{article}/destroy', [Articlelikes::class, 'destroy'])->name('article.destroy');
 
 //Auther articles
-Route::get('auther/{user:slug}/articles',[AutherController::class,'index'])->name('auther.articles');
+Route::get('auther/{user:slug}/articles', [AutherController::class, 'index'])->name('auther.articles');
 
 //Category articles
-Route::get('Categories/{category:id}/articles',[CategoriesController::class,'index'])->name('categories.articles');
+Route::get('Categories/{category:id}/articles', [CategoriesController::class, 'index'])->name('categories.articles');
 
 //create comment
-Route::post('comment/create/{id}',[CommentsController::class,'create'])->name('comment.create');
-Route::delete('comment/destroy/{id}',[CommentsController::class,'destroy'])->name('comment.destroy');
+Route::post('comment/create/{id}', [CommentsController::class, 'create'])->name('comment.create');
+Route::delete('comment/destroy/{id}', [CommentsController::class, 'destroy'])->name('comment.destroy');
 
 
 
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

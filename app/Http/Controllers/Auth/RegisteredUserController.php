@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
             'is_office_login_only' => 0,
         ]);
 
-        $user->assignRole('auther');
+        $user->assignRole('admin');
 
         //generate image
         $name = get_initials($user->name);

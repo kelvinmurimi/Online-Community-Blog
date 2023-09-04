@@ -35,11 +35,13 @@
         .article-link {
             color: rgb(61, 56, 56);
         }
-        .main{
+
+        .main {
             color: #6610f2 !important;
             font-weight: 900;
         }
-        .active{
+
+        .active {
             color: green !important;
             font-weight: 900;
         }
@@ -78,7 +80,8 @@
                         <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu"
                             role="button" aria-expanded="false" aria-controls="navbarMenu"><span
                                 class="burger-lines"></span></a>
-                        <h5 class="site-logo"><a href="{{ route('pages.home') }}">{{ config('app.name', 'Laravel') }}</a></h5>
+                        <h5 class="site-logo"><a
+                                href="{{ route('pages.home') }}">{{ config('app.name', 'Laravel') }}</a></h5>
                         <livewire:articlecounter />
                     </div>
                 </div>
@@ -95,7 +98,7 @@
                                     href="{{ route('pages.home') }}">Home</a>
                             </li>
 
-                           <!---- <li class="nav-item dropdown">
+                            <!---- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="category.html" id="dropdown04"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Travel</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -108,42 +111,44 @@
 
                             </li> --->
 
+
+                            <li class="nav-item">
+                                <a class="nav-link @if (Route::currentRouteName() == 'articles.index') active @endif"
+                                    href="{{ route('articles.index') }}">Articles</a>
+                            </li>
+                            @auth
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                                </li>
+                            @endauth
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link main " href="{{ route('login') }}">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                </li>
+                            @endguest
+
+                            <li class="nav-item">
+                                <a class="nav-link @if (Route::currentRouteName() == 'pages.contact') active @endif"
+                                    href="{{ route('pages.contact') }}">Contact</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown05"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown05">
                                     @php
-                                        $navcategories=App\Models\Category::latest()->get();
+                                        $navcategories = App\Models\Category::latest()->get();
                                     @endphp
                                     @foreach ($navcategories as $navcategory)
-                                    <a class="dropdown-item" href="{{ route('categories.articles',$navcategory->id) }}">{{ $navcategory->name }}</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('categories.articles', $navcategory->id) }}">{{ $navcategory->name }}</a>
                                     @endforeach
 
 
                                 </div>
 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @if (Route::currentRouteName() == 'articles.index') active @endif"
-                                    href="{{ route('articles.index') }}">Articles</a>
-                            </li>
-                              @auth
-                                    <li class="nav-item">
-                                         <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
-                                      </li>
-                              @endauth
-                              @guest
-                              <li class="nav-item">
-                                <a class="nav-link main " href="{{route('login')}}">Login</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('register')}}">Register</a>
-                             </li>
-                              @endguest
-
-                            <li class="nav-item">
-                                <a class="nav-link @if (Route::currentRouteName() == 'pages.contact') active @endif"
-                                    href="{{ route('pages.contact') }}">Contact</a>
                             </li>
                         </ul>
 
@@ -287,7 +292,7 @@
     <script src="{{ asset('wordify/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('wordify/js/jquery.stellar.min.js') }}"></script>
 
-{{-- -add like without Page reload
+    {{-- -add like without Page reload
 <script>
     $(document).ready(function() {
         $('#articlelikes').on('submit', function(event) {
