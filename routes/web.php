@@ -4,6 +4,7 @@
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\dashboard\AdmincategoriesController;
 
+use App\Http\Controllers\dashboard\AdminContactController;
 use App\Http\Livewire\Articlelikes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Dashboard;
@@ -84,6 +85,8 @@ Route::prefix(config('admintw.prefix'))->middleware(['auth', 'activeUser', 'IpCh
     Route::prefix('dashboardcategories')->group(function () {
         Route::resource('/categories', AdmincategoriesController::class);
     });
+    //admin contact
+    Route::get('admin/contact',[AdminContactController::class,'index'])->name('admin.contact.index');
 
 });
 //articles

@@ -3,7 +3,7 @@
     <div>
         <div class="flex justify-between">
 
-            <h1>{{ __('Your Articles') }}</h1>
+            <h1>{{ __('Contacts') }}</h1>
 
             <div>
 
@@ -63,28 +63,30 @@
             <table>
                 <thead>
                     <tr>
-                        <th><a href="#" wire:click.prevent="sortBy('first_name')">{{ __('title') }}</a></th>
+                        <th><a href="#" wire:click.prevent="sortBy('first_name')">{{ __('Name') }}</a></th>
+                        <th><a href="#" wire:click.prevent="sortBy('phone')">{{ __('Action') }}</a></th>
                         <th><a href="#" wire:click.prevent="sortBy('email')">{{ __('Action') }}</a></th>
-
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($articles as $article)
+                    @foreach ($contacts as $contact)
                         <tr>
                             <td class="flex">
-                                <div>
 
-                                    <img src="{{ asset($article->image) }}" alt="{{ $article->title() }}" width="80"
-                                        class="h-12 w-12 rounded-full">
+                                <div class="pl-1 pt-1">{{ $contact->name }}</div>
+                            </td>
+                            <td class="flex">
 
-                                </div>
-                                <div class="pl-1 pt-1">{{ Str::limit($article->title(), 100) }}</div>
+                                <div class="pl-1 pt-1">{{ $contact->email }}</div>
+                            </td>
+                            <td class="flex">
+
+                                <div class="pl-1 pt-1">{{ $contact->phone }}</div>
                             </td>
                             <td>
                                 <div class="flex space-x-2">
-                                    <a
-                                        href="{{ route('admin.articles.edit', $article->id) }}"class="btn btn-primary">{{ __('Edit') }}</a>
-                                    <form action="{{ route('admin.articles.destroy', $article->id) }}" method="post">
+
+                                    <form action="{{ route('admin.contact.destroy', $contact->id) }}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="submit"
@@ -98,7 +100,7 @@
             </table>
         </div>
 
-        {{ $articles->links() }}
+        {{ $contacts->links() }}
 
     </div>
 @endsection

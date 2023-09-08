@@ -22,7 +22,9 @@
                 <div class="mb-5">
                     <div class="rounded-md shadow-sm">
                         {{-- Article Title --}}
-                        <label for="Article Title" class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article Title</strong></label>
+                        <label for="Article Title"
+                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article
+                                Title</strong></label>
                         <input type="text" name='title'
                             class="block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm"
                             value="  {{ old('title') }}">
@@ -30,7 +32,9 @@
                             <p class="error">{{ $message }}</p>
                         @enderror
                         {{-- Article Excerpt --}}
-                        <label for="Article excerpt"  class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article Excerpt</strong></label>
+                        <label for="Article excerpt"
+                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article
+                                Excerpt</strong></label>
                         <textarea type="text" name='excerpt' rows="10"
                             class="block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm">
                             {{ old('excerpt') }}
@@ -39,7 +43,9 @@
                             <p class="error">{{ $message }}</p>
                         @enderror
                         {{-- Article Cover Image --}}
-                        <label for="Article cover_image"  class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article CoverImage</strong></label>
+                        <label for="Article cover_image"
+                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article
+                                CoverImage</strong></label>
                         <input type="file" name='cover_image'
                             class="block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm">
 
@@ -47,21 +53,25 @@
                         @error('cover_image')
                             <p class="error">{{ $message }}</p>
                         @enderror
-                         {{-- Article Category  --}}
-                         <label for="Article category" class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article Category</strong></label>
-                         <select type="text" name='category_id'
-                             class="block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm"
-                             value="  {{ old('category_id') }}">
-                             @foreach ($categories as $category)
-                             <option value="{{ $category->id }}">{{ $category->name }}</option>
-                             @endforeach
+                        {{-- Article Category  --}}
+                        <label for="Article category"
+                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article
+                                Category</strong></label>
+                        <select type="text" name='category_id'
+                            class="block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm"
+                            value="  {{ old('category_id') }}">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
 
-                            </select>
-                         @error('category_id')
-                             <p class="error">{{ $message }}</p>
-                         @enderror
+                        </select>
+                        @error('category_id')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                         {{-- Article content --}}
-                        <label for="Article Content"  class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article Content</strong></label>
+                        <label for="Article Content"
+                            class="block text-sm font-medium leading-5 text-gray-700 dark:text-gray-200"><strong>Article
+                                Content</strong></label>
                         <textarea type="text" name='content'id="content"rows="10" cols="80"
                             class="block w-full dark:bg-gray-500 dark:text-gray-200 dark:placeholder-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-light-blue-500 focus:border-light-blue-500 sm:text-sm">
                               {{ old('content') }}
@@ -84,6 +94,7 @@
 
         </div>
     </div>
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 
-
+    <script src="{{ asset('tinymce.js') }}"></script>
 @endsection
