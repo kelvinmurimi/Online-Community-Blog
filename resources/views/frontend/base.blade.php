@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,6 +25,11 @@
         h5 {
             color: #fff !important;
         }
+
+        .text-white {
+            color: #fff !important;
+        }
+
 
         h1 {
             color: rgb(87, 83, 83);
@@ -54,7 +59,7 @@
     <div class="wrap">
 
         <header role="banner">
-            <div class="top-bar">
+            <div class="top-bar" style="background-color: blue !important;">
                 <div class="container">
                     <div class="row">
                         <div class="col-9 social">
@@ -160,11 +165,11 @@
 
         @yield('content')
 
-        <footer class="site-footer">
+        <footer class="site-footer" style="background-color: blue !important; color:#fff !important;">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-4">
-                        <h3>About Us</h3>
+                        <h3>Qoute Of The Day.</h3>
                         <p class="mb-4">
                             <img src="{{ asset('wordify/images/img_1.jpg') }}" alt="Image placeholder"
                                 class="img-fluid">
@@ -176,51 +181,17 @@
                     <div class="col-md-6 ml-auto">
                         <div class="row">
                             <div class="col-md-7">
-                                <h3>Latest Post</h3>
+                                <h3>We Are Social</h3>
                                 <div class="post-entry-sidebar">
                                     <ul>
-                                        <li>
-                                            <a href="">
-                                                <img src="{{ asset('wordify/images/img_6.jpg') }}"
-                                                    alt="Image placeholder" class="mr-4">
-                                                <div class="text">
-                                                    <h4>How to Find the Video Games of Your Youth</h4>
-                                                    <div class="post-meta">
-                                                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                                                        <span class="ml-2"><span class="fa fa-comments"></span>
-                                                            3</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <img src="{{ asset('wordify/images/img_3.jpg') }}"
-                                                    alt="Image placeholder" class="mr-4">
-                                                <div class="text">
-                                                    <h4>How to Find the Video Games of Your Youth</h4>
-                                                    <div class="post-meta">
-                                                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                                                        <span class="ml-2"><span class="fa fa-comments"></span>
-                                                            3</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <img src="{{ asset('wordify/images/img_4.jpg') }}"
-                                                    alt="Image placeholder" class="mr-4">
-                                                <div class="text">
-                                                    <h4>How to Find the Video Games of Your Youth</h4>
-                                                    <div class="post-meta">
-                                                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                                                        <span class="ml-2"><span class="fa fa-comments"></span>
-                                                            3</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
+
+                                        <li><a href="#"><span class="fa fa-twitter"></span> Twitter</a></li>
+                                        <li><a href="#"><span class="fa fa-facebook"></span> Facebook</a></li>
+                                        <li><a href="#"><span class="fa fa-instagram"></span> Instagram</a></li>
+                                        <li><a href="#"><span class="fa fa-vimeo"></span> Vimeo</a></li>
+                                        <li><a href="#"><span class="fa fa-youtube-play"></span> Youtube</a></li>
+                                        <li><a href="#"><span class="fa fa-snapchat"></span> Snapshot</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -231,26 +202,15 @@
                                 <div class="mb-5">
                                     <h3>Quick Links</h3>
                                     <ul class="list-unstyled">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Travel</a></li>
-                                        <li><a href="#">Adventure</a></li>
-                                        <li><a href="#">Courses</a></li>
+                                        <li><a href="{{ route('register') }}">Join Us</a></li>
+                                        <li><a href="{{ route('login') }}">Login</a></li>
+                                        <li><a href="{{ route('pages.contact') }}">Contat Us</a></li>
+                                        <li><a href="#">Tags</a></li>
                                         <li><a href="#">Categories</a></li>
                                     </ul>
                                 </div>
 
-                                <div class="mb-5">
-                                    <h3>Social</h3>
-                                    <ul class="list-unstyled footer-social">
-                                        <li><a href="#"><span class="fa fa-twitter"></span> Twitter</a></li>
-                                        <li><a href="#"><span class="fa fa-facebook"></span> Facebook</a></li>
-                                        <li><a href="#"><span class="fa fa-instagram"></span> Instagram</a></li>
-                                        <li><a href="#"><span class="fa fa-vimeo"></span> Vimeo</a></li>
-                                        <li><a href="#"><span class="fa fa-youtube-play"></span> Youtube</a>
-                                        </li>
-                                        <li><a href="#"><span class="fa fa-snapchat"></span> Snapshot</a></li>
-                                    </ul>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -258,14 +218,16 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <p class="small">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
                             Copyright &copy;
-                            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>-->
+                            {{ config('app.name', 'Laravel') }}
                             <script>
                                 document.write(new Date().getFullYear());
                             </script> All Rights Reserved | This template is made with <i
-                                class="fa fa-heart text-danger" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                                class="fa fa-heart text-danger" aria-hidden="true"></i> by <a href=""
+                                target="_blank">Colorlib </a>
+                            <span class="text-white">powered by Murimicodes</span>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

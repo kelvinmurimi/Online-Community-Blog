@@ -85,7 +85,7 @@
               <div class="bio-body">
                 <h2>{{$article->user->username }}</h2>
                 <p>
-                    {{ $article->user->bio }}
+                    {{ Str::limit($article->user->bio, 200, '...') }}
                 .</p>
                 <p><a href="{{route('auther.articles',$article->user)}}" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
                 <p class="social">

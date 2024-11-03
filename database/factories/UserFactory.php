@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'is_active' => 1,
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
-            'image' => 'users/avatar.png',
+            'image' => 'users/person_'.rand(1,6).'.jpg',
             'two_fa_active' => 0,
         ];
 

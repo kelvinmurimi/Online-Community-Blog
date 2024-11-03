@@ -44,9 +44,9 @@ class Profile extends Component
         $this->name = $this->user->name;
         $this->username = $this->user->username;
         $this->email = $this->user->email;
-        $this->facebook= $this->user->facebook;
-        $this->twitter= $this->user->twitter;
-        $this->instagram= $this->user->instagram;
+        $this->facebook= 'https://web.facebook.com/'.$this->user->facebook;
+        $this->twitter= 'https://twitter.com/'.$this->user->twitter;
+        $this->instagram= 'https://www.instagram.com/'.$this->user->instagram;
         $this->bio= $this->user->bio;
     }
 
