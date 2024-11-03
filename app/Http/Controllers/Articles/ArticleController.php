@@ -41,6 +41,11 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function testpostslimit(){
+        $posts=Article::latest()->limit(3);
+        $posts=Article::latest()->take(3);
+    }
+
 
 
 }
