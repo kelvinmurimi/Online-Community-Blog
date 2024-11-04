@@ -1,10 +1,10 @@
 /.phpunit.cache
 /node_modules
-public/build
+
 /public/wordify
 /public/images/articles
-/public/hot
-public/storage
+public/hot
+
 /storage/*.key
 /vendor
 .env
